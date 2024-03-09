@@ -18,7 +18,7 @@ import {
 
 export default function SelectPayment() {
   return (
-    <div className="my-2">
+    <div className="">
       <Card sx={{ minWidth: 275, borderRadius: 4 }}>
         <CardContent>
           <div className="flex">

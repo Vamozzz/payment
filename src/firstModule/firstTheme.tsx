@@ -15,18 +15,20 @@ const FirstTheme = () => {
   const [isSubmitted, setSubmitted] = useState(false);
 
   return (
-    <div className="px-8  bg-[#F1F1F1] w-full h-full">
+    <div className="relative bg-[#F1F1F1] w-full h-full flex flex-col gap-4 border-2">
       <BrandSpace />
       {!isSubmitted ? (
-        <div>
+        <div className="px-8 ">
           <AmountPayable />
-          <div>
+          <div className="my-4">
             <p>Select payment options</p>
           </div>
           <SelectPayment />
           <PaymentType />
           <Queries />
-          <FooterLink />
+          <div className="my-4">
+            <FooterLink />
+          </div>
           <div className="flex flex-col gap-5  items-center pb-36">
             <div>
               <p>your money is always safe</p>

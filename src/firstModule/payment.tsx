@@ -7,7 +7,7 @@ import PaymentSuccess from "@/firstModule/paymentSuccessful";
 import { useFirstModule } from "@/provider/invoiceProvider";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import WaitPage from "./waitPage";
 
 interface PaymentProps {
@@ -15,50 +15,53 @@ interface PaymentProps {
 }
 
 const Payment: React.FC<PaymentProps> = () => {
-  const [paymentStatus, setPaymentStatus] = useState("");
+  const [paymentStatus, setPaymentStatus] = useState(" ");
   const { invoiceData } = useFirstModule();
 
   useEffect(() => {
-    const timeOutID = setTimeout(() => {
-      getTransactionStatus();
-      console.log("getTransactionStatus triggered");
-    }, 1000);
-    () => clearTimeout(timeOutID);
-  }, []);
+    const fetchTransactionStatus = async () => {
+      try {
+        const response = await fetch(
+          "https://api.vampay.in/Merchent/InvoiceTransactionWebhook",
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              invoice_id: invoiceData?.invoiceId,
+            }),
+          }
+        );
 
-  const getTransactionStatus = async () => {
-    try {
-      const response = await fetch(
-        "https://vampay.in/Merchent/InvoiceTransactionWebhook",
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            invoice_id: invoiceData?.invoiceId,
-          }),
+        if (!response.ok) {
+          throw new Error("API request failed");
         }
-      );
 
-      if (!response.ok) {
-        setPaymentStatus("PENDING");
-        throw new Error("API request failed");
+        const data = await response.json();
+        setPaymentStatus(data?.data);
+      } catch (error) {
+        setPaymentStatus("FAILURE");
       }
-
-      const data = await response.json();
-      console.log(data, "datadatadatadatadata=====>");
-      setPaymentStatus(data?.data);
-    } catch (error) {
-      console.log(error);
-      setPaymentStatus("PENDING");
-    }
-  };
+    };
+    const intervalId = setInterval(async () => {
+      if (paymentStatus === " " || paymentStatus === "PENDING") {
+        // console.log("1===", paymentStatus, "========>");
+        await fetchTransactionStatus();
+      } else if (paymentStatus === "FAILURE" || paymentStatus === "SUCCESS") {
+        // console.log("2===", paymentStatus, "========>");
+        clearInterval(intervalId);
+      }
+    }, 3000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [invoiceData?.invoiceId, paymentStatus]);
 
   return (
     <div className="">
-      {paymentStatus !== "" ? (
-        <div>
+      {paymentStatus !== " " ? (
+        <div className="p-8 flex flex-col gap-4">
           {paymentStatus === "PENDING" ? (
             <PaymentStatus />
           ) : paymentStatus === "SUCCESS" ? (

@@ -19,13 +19,13 @@ export default function Queries() {
   const handleEmail = () => {
     window.open(`mailto:${invoiceData?.vendor_email}`, "_self");
   };
-  
+
   return (
     <div className="">
-      <Card sx={{ minWidth: 275, borderRadius: 4, marginTop:4 }}>
+      <Card sx={{ minWidth: 275, borderRadius: 4 }}>
         <CardContent>
-          <div className="">
-            <p className="text-[12px]">
+          <div className="flex flex-col gap-2 p-2">
+            <p className="text-[12px] ml-2">
               For any queries, Please contact
               <span className="font-bold"> {invoiceData?.vendor_name}</span>
             </p>

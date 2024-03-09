@@ -61,7 +61,6 @@ export default function DetailsPuller(props: Props) {
   };
 
   const toggleDetails = () => {
-    console.log("toggleDetails");
     setOpen(!open);
   };
 
@@ -70,7 +69,8 @@ export default function DetailsPuller(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Root>
+    // <Root>
+    <div onClick={() => setOpen(!open)}>
       <CssBaseline />
       <Global
         styles={{
@@ -106,9 +106,9 @@ export default function DetailsPuller(props: Props) {
         >
           <Puller />
 
-          <div className="p-8 flex justify-around items-center">
+          <div className="p-8 flex justify-around items-center ">
             <div className="flex flex-col gap-1">
-              <p>{` ₹ ${invoiceData?.payable_amount}`}</p>
+              <p className="font-semibold text-[28px]">{` ₹ ${invoiceData?.payable_amount}`}</p>
               <button
                 className="text-[#5A5CE7] cursor-pointer"
                 onClick={toggleDetails}
@@ -185,6 +185,7 @@ export default function DetailsPuller(props: Props) {
           </Card>
         </StyledBox>
       </SwipeableDrawer>
-    </Root>
+    </div>
+    // </Root>
   );
 }

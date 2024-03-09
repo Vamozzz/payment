@@ -81,6 +81,17 @@ export default function PaymentType() {
           app: "bhim",
         });
         break;
+
+      case "addmore":
+        // window.location.href = `bhim://upi/transaction?pa=${encodeURIComponent(
+        //   invoiceLink?.link
+        // )}`;
+        paymentLink = invoiceLink?.link;
+        updatePaymentLink({
+          link: paymentLink,
+          app: "addmore",
+        });
+        break;
       default:
         console.error("Unsupported payment gateway");
     }
@@ -111,12 +122,12 @@ export default function PaymentType() {
       link: "",
       appName: "gpay",
     },
-    // {
-    //   icon: "/gpaylogo.svg",
-    //   name: "whatsapp",
-    //   link: "",
-    //   appName: "whatsapp",
-    // },
+    {
+      icon: "/addmore.svg",
+      name: "add more",
+      link: "",
+      appName: "addmore",
+    },
   ];
 
   const payLaterArray = [
@@ -260,13 +271,13 @@ export default function PaymentType() {
                 placeholder="Card Number"
                 className="w-full  bg-transparent outline-none"
               />
-              <Image
+              {/* <Image
                 src={"/tag.svg"}
                 alt="logo"
                 height={30}
                 width={30}
                 className="ml-2"
-              />
+              /> */}
             </div>
             <input
               placeholder="Name on card"

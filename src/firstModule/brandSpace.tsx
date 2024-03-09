@@ -1,5 +1,4 @@
 "use client";
-import { log } from "console";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import BasicListLanguage from "./languageOption";
@@ -15,11 +14,16 @@ const BrandSpace = () => {
     setLanguage(!language);
   };
 
-  console.log(invoiceData, "invoiceData on brandspace=>");
 
   return (
-    <div>
-      <div className="flex justify-center items-center py-6 ">
+    <div className="sticky top-0 z-10">
+      <div
+        className={`flex justify-center items-center py-6 ${
+          invoiceData?.bg_color
+            ? `bg-[${invoiceData?.bg_color}]`
+            : "bg-[#F1F1F1]"
+        } rounded-b-3xl `}
+      >
         <div className="flex w-2/3  gap-2 justify-center items-center p-2 ">
           {invoiceData?.merchant_logo ? (
             <Image

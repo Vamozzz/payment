@@ -7,38 +7,6 @@ import "./loader.css";
 
 const PaymentStatus = () => {
   const { invoiceData } = useFirstModule();
-  // console.log(
-  //   invoiceData,
-  //   "invoiceDatainvoiceDatainvoiceDatainvoiceDatainvoiceData"
-  // );
-
-  // const data = [
-  //   {
-  //     activityName: "Processing",
-  //     activitySubHeader: "Your transaction was successful",
-  //     activityImg: "",
-  //     bottomText: "",
-  //     bottomLink: "",
-  //     backGroundColor: "",
-  //     bottomIcon: "",
-  //   },
-  //   {
-  //     activityName: "Thank you!",
-  //     activityImg: "",
-  //     bottomText: "",
-  //     bottomLink: "",
-  //     backGroundColor: "",
-  //     bottomIcon: "",
-  //   },
-  //   {
-  //     activityName: "Payment Declined",
-  //     activityImg: "",
-  //     bottomText: "",
-  //     bottomLink: "",
-  //     backGroundColor: "",
-  //     bottomIcon: "",
-  //   },
-  // ];
 
   return (
     <div className="relative flex justify-center items-start">
@@ -169,7 +137,7 @@ const PaymentStatus = () => {
         <Skeleton
           variant="text"
           className="w-full h-20 "
-          sx={{ fontSize: "1rem", borderRadius: 3, }}
+          sx={{ fontSize: "1rem", borderRadius: 3 }}
           animation="wave"
         />
       </div>

@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export default function FooterLink() {
   return (
-    <div className="my-4">
+    <div className="">
       <Card sx={{ minWidth: 275, borderRadius: 4 }}>
         <CardContent>
           <div className="flex flex-col gap-2">
@@ -20,11 +20,14 @@ export default function FooterLink() {
               <Image src={"/MASTERCARD.svg"} alt="." height={30} width={40} />
               <Image src={"/RUPAY.svg"} alt="." height={30} width={40} />
             </div>
-            <p className="text-[12px] " >
+            <p className="text-[12px] ">
               want to create payment links for your business? visit
-              <span className="uppercase text-[#8875FF]" > vampay.com/payment-links </span> and get started instantly.
-              please report thi payment link if you find it to be suspicious
-              report payment link
+              <span className="uppercase text-[#8875FF]">
+                {" "}
+                vampay.com/payment-links{" "}
+              </span>{" "}
+              and get started instantly. please report thi payment link if you
+              find it to be suspicious report payment link
             </p>
           </div>
         </CardContent>

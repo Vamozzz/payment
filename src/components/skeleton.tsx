@@ -1,17 +1,34 @@
-import * as React from 'react';
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
+import * as React from "react";
+import Skeleton from "@mui/material/Skeleton";
+import Box from "@mui/material/Box";
 
-export default function SkeletonVariants() {
+export default function SkeletonColor() {
   return (
-    <Stack spacing={1}>
-      {/* For variant="text", adjust the height via font-size */}
-      {/* <Skeleton variant="text" sx={{ fontSize: '1rem' }} /> */}
-
-      {/* For other variants, adjust the size with `width` and `height` */}
-      <Skeleton variant="rectangular" width={'90rem'} height={'10rem'} />
-      <Skeleton variant="rectangular" width={210} height={60} />
-      <Skeleton variant="rounded" width={210} height={60} />
-    </Stack>
+    <Box
+      sx={{
+        bgcolor: "#FFFFFF",
+        p: 2,
+        width: "100%",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        gap: "30px",
+      }}
+    >
+      <Skeleton
+        sx={{ bgcolor: "grey.500" }}
+        variant="rectangular"
+        width="100%"
+        height={118}
+        animation="wave"
+      />
+      <Skeleton
+        sx={{ bgcolor: "grey.500" }}
+        variant="rectangular"
+        width="100%"
+        height="100%"
+        animation="wave"
+      />
+    </Box>
   );
 }

@@ -6,7 +6,7 @@ function WaitPage() {
   const [isMinute, setMinute] = useState("00");
 
   useEffect(() => {
-    countdownTimer(900);
+    countdownTimer(300);
   }, []);
 
   function countdownTimer(durationInSeconds: number) {
@@ -35,7 +35,7 @@ function WaitPage() {
     <div className="relative h-[90vh] flex flex-col gap-10 justify-center items-center">
       <div className="flex flex-col justify-center items-center">
         <p className="font-normal text-[40px]">
-          00:{isMinute}:{isSecond}
+          {isMinute}:{isSecond}
         </p>
         <p className="font-normal text-[16px] text-[#EF0000] ">Remaining</p>
       </div>
@@ -45,7 +45,7 @@ function WaitPage() {
           We are verifying your payment status
         </p>
       </div>
-      <div className="flex justify-center items-center absolute bottom-8">
+      <div className="flex justify-center items-center fixed bottom-8">
         <p>Powered by</p>
         <Image src={"/vampay.svg"} alt="." height={50} width={120} />
       </div>

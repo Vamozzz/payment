@@ -12,7 +12,7 @@ export default function AmountPayable() {
   const { invoiceData } = useFirstModule();
 
   return (
-    <div className="my-5">
+    <div className="">
       <Card sx={{ minWidth: 275, borderRadius: 4 }}>
         <CardContent>
           <div className=" flex justify-between items-end p-1 ">
@@ -22,7 +22,7 @@ export default function AmountPayable() {
 
             <div>
               <p className="heading text-wrap">
-                ₹{invoiceData?.payable_amount || "-"}
+                ₹ {invoiceData?.payable_amount || "-"}
               </p>
             </div>
           </div>

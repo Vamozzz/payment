@@ -10,6 +10,8 @@ import {
 } from "react";
 import { useFirstModule } from "@/provider/invoiceProvider";
 import FirstTheme from "./firstTheme";
+import SecondTheme from "./secondTheme";
+import ThirdTheme from "./thirdTheme";
 
 type ThemeContextData = {
   invoiceLink: { link: string; order_id: string } | null;
@@ -95,7 +97,9 @@ export const FirstThemeProvider = () => {
       <PaymentLinkContext.Provider
         value={{ linkData: paymentLink, loading: false, updatePaymentLink }}
       >
-        <FirstTheme />
+        {invoiceData?.template_id === 1 && <FirstTheme />}
+        {invoiceData?.template_id === 2 && <SecondTheme />}
+        {invoiceData?.template_id === 3 && <ThirdTheme />}
       </PaymentLinkContext.Provider>
     </FirstThemeContext.Provider>
   );
